@@ -7,6 +7,9 @@ public class Main10 {
         CRUDejer10 crudejer10 = new CRUDejer10();
 
 //        crudejer10.insertar_curso();
-        crudejer10.borrar_curso();
+//        crudejer10.borrar_curso();
+//        System.out.println(crudejer10.editar_cursos());
+
+        System.out.println(crudejer10.listarCursos());
     }
 }
