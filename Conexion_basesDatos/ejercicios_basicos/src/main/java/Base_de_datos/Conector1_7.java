@@ -10,7 +10,7 @@ import java.util.List;
 public class Conector1_7 {
     public Connection connect() throws SQLException {
         String password = "1234";
-        String url = "jdbc:mysql://localhost:3306/personas";
+        String url = "jdbc:mysql://localhost:3306/peronas";
         String user = "root";
         return DriverManager.getConnection(url, user, password);
     }
@@ -114,7 +114,7 @@ public class Conector1_7 {
 
     public List<Alumno> listarAlumnos() {
         List<Alumno> listaAlumnos = new ArrayList<>();
-        try (Connection connection = connect()){
+        try (Connection connection = connect()) {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM alumnos");
             while (resultSet.next()) {
