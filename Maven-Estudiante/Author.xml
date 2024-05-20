@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<author>
+    <Libro>
+        <author>kaka</author>
+        <title>SANJUANDEDIOS</title>
+        <yearPublished>2002</yearPublished>
+    </Libro>
+    <Libro>
+        <author>kaktua</author>
+        <title>TORNER</title>
+        <yearPublished>2005</yearPublished>
+    </Libro>
+    <name>Manuel</name>
+</author>

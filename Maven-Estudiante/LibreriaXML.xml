@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<library>
+    <libro>
+        <author>REMONES</author>
+        <title>KAKA</title>
+        <yearPublished>2006</yearPublished>
+    </libro>
+    <libro>
+        <author>JUANES</author>
+        <title>MAMA</title>
+        <yearPublished>2005</yearPublished>
+    </libro>
+</library>
