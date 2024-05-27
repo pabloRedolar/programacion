@@ -1,0 +1,155 @@
+Vehiculo.py
+
+class Vehiculo:
+    nombre: str
+    dorsal: int
+    velocidad_actual: int
+    velocidad_maxima: int
+    tipo_combustible: str
+    numero_ruedas: int    # A pesar de indicar que la añada en coche y moto,
+    # si la tienen en comun no tiene logica repetirlos, por lo tanto decidi añadirlo aqui
+
+    def __init__(self, nombre, dorsal, velocidad_maxima, tipo_combustible, numero_ruedas):
+        self.nombre = nombre
+        self.dorsal = dorsal
+        self.velocidad_actual = 0
+        self.velocidad_maxima = velocidad_maxima
+        self.tipo_combustible = tipo_combustible.lower()
+        self.numero_ruedas = numero_ruedas
+
+    def sonido_motor(self):
+        if self.tipo_combustible == "electrico":
+            print("Silencio")
+        if self.tipo_combustible == "gasolina":
+            print("brum brum")
+        if self.tipo_combustible == "gasoil":
+            print("sueno a cafetera")
+
+    def acelerar(self, kmh):
+        self.velocidad_actual += kmh
+        if self.velocidad_actual > self.velocidad_maxima:
+            self.velocidad_actual = self.velocidad_maxima
+
+    def mostrar_info(self):
+        return (f"Piloto: {self.nombre}, Dorsal: {self.dorsal}, "
+                f"velocidad actual/maxima: {self.velocidad_actual}/{self.velocidad_maxima}, "
+                f"tipo de combustible: {self.tipo_combustible}, num.ruedas: {self.numero_ruedas}")
+
+
+-------------------------
+
+Coche.py
+
+from Vehiculo import Vehiculo
+
+
+class Coche(Vehiculo):
+    ventanilla: str
+
+    def __init__(self, nombre, dorsal, velocidad_maxima, tipo_combustible, numero_ruedas):
+        super().__init__(nombre, dorsal, velocidad_maxima, tipo_combustible, numero_ruedas)
+        self.ventanilla = "subida"
+
+    def bajar_ventanilla(self):
+        self.ventanilla = "bajada"
+        print(f"La ventanilla del coche con dorsal {self.dorsal} esta bajada")
+
+    def mostrar_info(self):
+        if self.ventanilla == "bajada":
+            return "El coche con " + super().mostrar_info() + f", tiene la ventanilla {self.ventanilla}"
+        return "El coche con " + super().mostrar_info()
+    
+------------------------
+
+Moto.py
+
+from Vehiculo import Vehiculo
+
+
+class Moto(Vehiculo):
+    abrochado: str
+
+    def __init__(self, nombre, dorsal, velocidad_maxima, tipo_combustible, numero_ruedas):
+        super().__init__(nombre, dorsal, velocidad_maxima, tipo_combustible, numero_ruedas)
+        self.abrochado = "desabrochado"
+
+    def abrochar_casco(self):
+        self.abrochado = "abrochado"
+        print(f"El piloto con dorsal {self.dorsal} se ha abrochado el casco")
+
+    def mostrar_info(self):
+        if self.abrochado == "abrochado":
+            return "La moto con " + super().mostrar_info() + f", tiene el casco {self.abrochado}"
+        return "La moto con " + super().mostrar_info()
+
+------------------------------
+
+Circuito.py
+
+from Coche import Coche
+from Moto import Moto
+
+
+class Circuito:
+    nombre: str
+    lista_participantes: []
+
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.lista_participantes = []
+
+    def add_participante(self, participante):
+        self.lista_participantes.append(participante)
+
+    def mostrar_info(self):
+        print(f"Nombre del circuito: {self.nombre}\n"
+              f"Lista de Participantes:")
+
+    def inicializa_carrera(self):
+        for elemento in self.lista_participantes:
+            print(elemento.mostrar_info())
+
+
+--------------------------------
+
+Main.py
+
+from Circuito import Circuito
+from Moto import Moto
+from Coche import Coche
+
+circuito1 = Circuito("Gasol")
+
+coche1 = Coche("Pablo", 10, 190, "gasolina", 4)
+coche2 = Coche("Lucas", 11, 240, "gasoil", 4)
+coche3 = Coche("Fran", 17, 320, "electrico", 5)
+
+moto1 = Moto("Mike", 3, 290, "gasolina", 2)
+moto2 = Moto("Mark", 1, 370, "gasoil", 2)
+moto3 = Moto("Pepe", 5, 210, "electrico", 3)
+
+circuito1.add_participante(coche1)
+circuito1.add_participante(coche2)
+circuito1.add_participante(coche3)
+circuito1.add_participante(moto1)
+circuito1.add_participante(moto2)
+circuito1.add_participante(moto3)
+
+circuito1.inicializa_carrera()
+print()
+
+coche1.acelerar(1000)
+print(coche1.mostrar_info())
+
+
+print("\nExtra\n")  # Extra para probar el resto de funciones
+
+coche2.bajar_ventanilla()
+moto2.abrochar_casco()
+print(f"\n{coche2.mostrar_info()}\n"
+      f"{moto2.mostrar_info()}\n")
+
+# Extra motores
+coche2.sonido_motor()
+moto3.sonido_motor()
+moto1.sonido_motor()
